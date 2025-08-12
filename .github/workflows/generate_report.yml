@@ -119,8 +119,10 @@ jobs:
         if [[ -z "$DATA_SOURCES" ]]; then
           DATA_SOURCES="*No specific data sources were documented.*"
         fi
-
-        REPORT_TEXT="# Threat Hunt Report: HUNT_NAME_PLACEHOLDER
+        
+        # Create the report
+        cat > "$FILENAME" << 'REPORT_EOF'
+        # Threat Hunt Report: HUNT_NAME_PLACEHOLDER
 
         **Hunt ID:** HUNT_ID_PLACEHOLDER  
         **Hunt Type:** HUNT_TYPE_PLACEHOLDER  
@@ -294,11 +296,7 @@ jobs:
 
         ---
 
-        *This report was automatically generated from GitHub Issue data and hunter comments. Please review and update the Findings, Conclusions, and Recommendations sections with actual hunt results before finalizing.*"
-        
-        # Create the report
-        cat > "$FILENAME" << 'REPORT_EOF'
-        $REPORT_TEXT
+        *This report was automatically generated from GitHub Issue data and hunter comments. Please review and update the Findings, Conclusions, and Recommendations sections with actual hunt results before finalizing.*
         REPORT_EOF 
         
         # Substitute variables in the file using safer approach
@@ -375,7 +373,8 @@ jobs:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         ISSUE_NUMBER: ${{ github.event.issue.number }}
       run: |
-        COMMENT_TEXT="🎯 **Threat Hunt Report Generated**
+        COMMENT_BODY=$(cat << 'EOF'
+        🎯 **Threat Hunt Report Generated**
 
         A comprehensive hunt report has been automatically generated and saved to: \`$REPORT_FILENAME\`
 
@@ -387,10 +386,9 @@ jobs:
 
         Please review and update the report with actual hunt findings, evidence, and conclusions.
 
-        📄 [View the generated report]($REPORT_FILENAME)"
-        COMMENT_BODY=$(cat << 'EOF'
-        $COMMENT_TEXT
-        EOF)
+        📄 [View the generated report]($REPORT_FILENAME)
+        EOF
+        )
         
         # Substitute the filename
         COMMENT_BODY=$(echo "$COMMENT_BODY" | sed "s|\$REPORT_FILENAME|$REPORT_FILENAME|g")
