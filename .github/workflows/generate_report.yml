@@ -121,7 +121,7 @@ jobs:
         fi
         
         # Create the report
-        cat > "$FILENAME" << 'REPORT_EOF'
+        cat > "$FILENAME" << REPORT_EOF
         # Threat Hunt Report: HUNT_NAME_PLACEHOLDER
 
         **Hunt ID:** HUNT_ID_PLACEHOLDER  
@@ -298,7 +298,7 @@ jobs:
 
         *This report was automatically generated from GitHub Issue data and hunter comments. Please review and update the Findings, Conclusions, and Recommendations sections with actual hunt results before finalizing.*
         
-        REPORT_EOF 
+        REPORT_EOF
         
         # Substitute variables in the file using safer approach
         sed -i "s/HUNT_NAME_PLACEHOLDER/$HUNT_NAME/g" "$FILENAME"
