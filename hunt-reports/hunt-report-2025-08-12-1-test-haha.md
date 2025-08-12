@@ -173,6 +173,7 @@ HUNTER_NOTES_PLACEHOLDER
 ---
 
 *This report was automatically generated from GitHub Issue data and hunter comments. Please review and update the Findings, Conclusions, and Recommendations sections with actual hunt results before finalizing.*
+
 REPORT_EOF 
 
 # Substitute variables in the file using safer approach
