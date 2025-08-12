@@ -120,7 +120,7 @@ jobs:
           DATA_SOURCES="*No specific data sources were documented.*"
         fi
 
-        REPORT_TEXT = "# Threat Hunt Report: HUNT_NAME_PLACEHOLDER
+        REPORT_TEXT="# Threat Hunt Report: HUNT_NAME_PLACEHOLDER
 
         **Hunt ID:** HUNT_ID_PLACEHOLDER  
         **Hunt Type:** HUNT_TYPE_PLACEHOLDER  
