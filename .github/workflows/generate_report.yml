@@ -374,7 +374,7 @@ jobs:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         ISSUE_NUMBER: ${{ github.event.issue.number }}
       run: |
-        COMMENT_BODY=$(cat << 'EOF'
+        COMMENT_BODY=$(cat << EOF
         🎯 **Threat Hunt Report Generated**
 
         A comprehensive hunt report has been automatically generated and saved to: \`$REPORT_FILENAME\`
